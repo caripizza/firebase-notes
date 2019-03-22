@@ -1,6 +1,5 @@
 import React from 'react';
 import { connectFirestore } from './connectFirestore';
-import { notesCollection } from '../services/firebase';
 
 export default function Notes({ notes }) {
   const noteListItems = notes && notes.map(note => {
@@ -19,6 +18,10 @@ export default function Notes({ notes }) {
   )
 }
 
+const mapFirestoreToProps = firestore => ({
+  notes: firestore.collection('notes')
+})
+
 export const ConnectedNotes = connectFirestore(
-  notesCollection, 'notes'
+  mapFirestoreToProps
 )(Notes)

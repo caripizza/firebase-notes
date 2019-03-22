@@ -1,34 +1,40 @@
-import React from 'react';
-import { app, notesCollection } from '../services/firebase'; // will eventually be passed in as 'ref'
+import React from 'react'
+import { app, firestore } from '../services/firebase';
 
-export const connectFirestore = (ref, key = 'data') => Component => {
+export const connectFirestore = mapFirestoreToProps => Component => {
   class ConnectFirestore extends React.PureComponent {
-    state = {
-      data: null
+    state = {}
+
+    subscribe = (ref, dataKey) => {
+      return ref.onSnapshot(snap => {
+        if (snap instanceof app.firestore.DocumentSnapshot) {
+          this.setState({ [dataKey]: { ...snap.data(), id: snap.id } })
+        } else if (snap instanceof app.firestore.QuerySnapshot) {
+          const data = snap.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+          this.setState({ [dataKey]: data })
+        }
+      })
     }
 
-    componentDidMount() {
-      this.unsubscribe = notesCollection.onSnapshot(snap => {
-        if(snap instanceof app.firestore.DocumentSnapshot) { // DocumentSnapshot = one item in collection
-          this.setState({ data: { ...snap.data(), id: snap.id } })
-        } else if(snap instanceof app.firestore.QuerySnapshot) { // QuerySnapshot = array of documents, list of docs
-          const data = snap.docs.map(doc => ({ ...doc.data(), id: doc.id }))
-          this.setState({ data })
-        }
+    componentWillMount() {
+      const mapObject = mapFirestoreToProps(firestore, this.props)
+      this.unsubscribe = Object.keys(mapObject).map(dataKey => {
+        const ref = mapObject[dataKey]
+        return this.subscribe(ref, dataKey)
       });
     }
 
     componentWillUnmount() {
-      this.unsubscribe && this.unsubscribe();
+      this.unsubscribe && this.unsubscribe.map(u => u())
     }
 
     render() {
-      const props = { ...this.props, [key]: this.state.data};
+      const props = { ...this.props, ...this.state };
       return (
-        <Component { ...props } />
+        <Component {...props} />
       )
     }
   }
 
-  return ConnectFirestore;
+  return ConnectFirestore
 }
