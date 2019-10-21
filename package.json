@@ -1,11 +1,14 @@
 {
   "name": "firebase-notes",
+  "description": "Exploratory testing using CRA, serverless hosting with Firebase, data storage to Cloud Firestore, and geocoding service using Google Maps JavaScript API.",
+  "license" : "See LICENSE.md",
+  "author": "Cari Palazzolo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.9.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "firebase": "^7.2.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -26,6 +29,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "firebase-tools": "^6.5.0"
+    "firebase-tools": "^6.12.0"
   }
 }
