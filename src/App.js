@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import NoteForm from './components/NoteForm';
 import { addNote } from './actions/notes';
 import { ConnectedNotes } from './components/Notes';
-import { ConnectedNote } from './components/NoteDetails';
+import { SelectedNote } from './components/NoteDetails';
 
 class App extends Component {
 
-  handleSubmit = (title, body, event) => {
+  handleSubmit = (title, body, timestamp, event) => {
     event.preventDefault();
-    addNote({ title, body})
+    addNote({ title, body, timestamp })
   }
 
   render() {
     return (
         <>
-          <ConnectedNote id="2hiOEZv2xtPYz9j6oe0f" />
+          <SelectedNote 
+            id="RsqF9yDL2Qb0bLpY9JXO"
+          />
           <hr/>
           <NoteForm handleSubmit={this.handleSubmit} />
           <ConnectedNotes/>

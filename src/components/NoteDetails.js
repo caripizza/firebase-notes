@@ -7,6 +7,7 @@ export default function Note({ note }) {
     <>
       <p>{note.title}</p>
       <p>{note.body}</p>
+      <p>{note.timestamp}</p>
     </>
   )
 }
@@ -15,6 +16,6 @@ const mapFirestoreToProps = (firestore, props) => ({
   note: firestore.collection('notes').doc(props.id)
 })
 
-export const ConnectedNote = connectFirestore(
+export const SelectedNote = connectFirestore(
   mapFirestoreToProps
 )(Note)

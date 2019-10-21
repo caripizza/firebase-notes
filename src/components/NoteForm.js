@@ -3,7 +3,8 @@ import React from 'react';
 export default class NoteForm extends React.PureComponent {
   state = {
     title: '',
-    body: ''
+    body: '',
+    timestamp: new Date(Date.now()).toLocaleString()
   }
 
   handleChange = ({ target }) => {
@@ -11,10 +12,10 @@ export default class NoteForm extends React.PureComponent {
   }
 
   render() {
-    const { title, body } = this.state;
+    const { title, body, timestamp } = this.state;
     return (
-      <form onSubmit={this.props.handleSubmit.bind(null, title, body)}>
-        <input type="text" name="title" value={title} onChange={this.handleChange}/>
+      <form onSubmit={this.props.handleSubmit.bind(null, title, body, timestamp)}>
+        <input type="text" name="title" value={title} onChange={this.handleChange} required/>
         <br/>
         <textarea name="body" value={body} onChange={this.handleChange}/>
         <br/>

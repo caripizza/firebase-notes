@@ -16,7 +16,7 @@ export const connectFirestore = mapFirestoreToProps => Component => {
       })
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       const mapObject = mapFirestoreToProps(firestore, this.props)
       this.unsubscribe = Object.keys(mapObject).map(dataKey => {
         const ref = mapObject[dataKey]
