@@ -1,33 +1,77 @@
-.App {
-  text-align: center;
+body {
+  background: lightseagreen;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+section {
+  background: #fff;
+  border: 0.35rem solid lightseagreen;
+  min-height: 5vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+section div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+header {
+  font-size: 1.2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+h1, h3 {
+  padding: 1rem;
+  margin: 0;
+}
+
+hr {
+  width: 100%;
+  margin-bottom: 3rem;
+  margin-top: 12rem;
+}
+
+form {
+  padding: 1rem 1rem 2rem 1rem;
+  margin-left: 0.75rem;
+}
+
+input[type=text],input[type=number] {
+  margin: 1rem;
+  min-width: 13.5rem;
+  padding: 0.25rem 1rem;
+  font-size: 1rem;
+}
+
+input[type=radio] {
+  height: 1rem;
+  width: 1rem;
+}
+
+@media screen and (min-width: 568px) {
+  input[type=text],input[type=number] {
+    min-width: 23rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media screen and (max-width: 375px) {
+  input[type=text],input[type=number] {
+    min-width: 12rem;
   }
+}
+
+button {
+  background: #fff;
+}
+
+form ul {
+  list-style: none;
+  padding-left: 0.5rem;
+  padding-top: 0;
+  min-height: 3rem;
+}
+
+section ul {
+  margin-bottom: 0;
+}
+
+legend {
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
