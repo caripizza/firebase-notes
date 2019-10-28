@@ -10,9 +10,9 @@ export default function LoanAppFormHook() {
   const [requestedLoanAmount = 100, setRequestedLoanAmount] = useState(0);
 
   useEffect(() => {
-    mailingAddress && results && geocodeApiSearch(mailingAddress)
+    mailingAddress && geocodeApiSearch(mailingAddress)
       .then(data => setResults(data));
-  }, [mailingAddress, results]);
+  }, [mailingAddress]);
 
   const radioButtonAddressResults = mailingAddress && results.map((el, i) => {
     return (
