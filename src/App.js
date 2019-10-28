@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+  Suspense
+} from 'react';
 import './App.css';
-import NoteForm from './components/NoteForm';
-import { addNote } from './actions/notes';
-import { ConnectedNotes } from './components/Notes';
-import { SelectedNote } from './components/NoteDetails';
+import LoanAppFormHook from './components/LoanAppFormHook';
+import { ConnectedLoanApps } from './components/LoanApps';
+const Header = React.lazy(() => import('./components/Header'));
 
 class App extends Component {
-
-  handleSubmit = (title, body, timestamp, event) => {
-    event.preventDefault();
-    addNote({ title, body, timestamp })
-  }
-
   render() {
     return (
-        <>
-          <SelectedNote 
-            id="RsqF9yDL2Qb0bLpY9JXO"
-          />
-          <hr/>
-          <NoteForm handleSubmit={this.handleSubmit} />
-          <ConnectedNotes/>
-        </>
+      <>
+        <Suspense fallback={''}>
+          <Header>
+            <>
+              <h1>Loan Origination System</h1>
+            </>
+          </Header>
+          <main>
+            <LoanAppFormHook/>
+            <section>
+              <h3>Loan Database</h3>
+              <ConnectedLoanApps/>
+            </section>
+          </main>
+        </Suspense>
+      </>
     );
   }
 }
