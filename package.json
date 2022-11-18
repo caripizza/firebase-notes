@@ -27,7 +27,7 @@
     "firebase": "^7.2.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "^3.2.0"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "firebase-tools": "^6.12.0"
